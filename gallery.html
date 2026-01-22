@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фотогалерея - Калинин Алексей Владимирович</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/gallery.css">
+</head>
+<body>
+    <!-- Место для загрузки header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Основной контент галереи -->
+    <main class="gallery-main">
+        <div class="gallery-hero">
+            <h1><i class="fas fa-camera"></i> Фотогалерея</h1>
+            <p>Мои рабочие моменты, мероприятия и достижения учащихся</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <i class="fas fa-images"></i>
+                    <span>24 фотографии</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-folder"></i>
+                    <span>5 категорий</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>2022-2024</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Фильтры галереи -->
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-th-large"></i> Все фото
+            </button>
+            <button class="filter-btn" data-filter="work">
+                <i class="fas fa-chalkboard-teacher"></i> Рабочие моменты
+            </button>
+            <button class="filter-btn" data-filter="sport">
+                <i class="fas fa-dumbbell"></i> Спорт
+            </button>
+            <button class="filter-btn" data-filter="obzh">
+                <i class="fas fa-shield-alt"></i> ОБЖ
+            </button>
+            <button class="filter-btn" data-filter="events">
+                <i class="fas fa-calendar-alt"></i> Мероприятия
+            </button>
+            <button class="filter-btn" data-filter="achievements">
+                <i class="fas fa-trophy"></i> Достижения
+            </button>
+        </div>
+
+        <!-- Сетка галереи -->
+        <div class="gallery-container">
+            <!-- Изображения будут добавляться через JavaScript -->
+        </div>
+
+        <!-- Информация о количестве фото -->
+        <div class="gallery-info">
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <p>Нажмите на любое фото для просмотра в полном размере</p>
+            </div>
+        </div>
+
+        <!-- Кнопка загрузки больше фото -->
+        <div class="load-more-container">
+            <button class="load-more-btn" id="loadMoreBtn">
+                <i class="fas fa-plus"></i> Загрузить еще фото
+            </button>
+            <p class="load-more-text">Показано <span id="shownCount">0</span> из <span id="totalCount">0</span> фото</p>
+        </div>
+
+        <!-- Модальное окно для просмотра изображения -->
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-navigation">
+                    <button class="modal-nav-btn prev-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="modal-image-container">
+                        <img id="modalImage" src="" alt="" loading="lazy">
+                    </div>
+                    <button class="modal-nav-btn next-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="modal-info">
+                    <h3 id="modalTitle"></h3>
+                    <p id="modalDescription"></p>
+                    <div class="modal-details">
+                        <span id="modalCategory" class="category-badge"></span>
+                        <p id="modalDate" class="image-date"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Подключаем скрипты -->
+    <script src="scripts/header.js"></script>
+    <script src="scripts/gallery.js"></script>
+</body>
+</html>
