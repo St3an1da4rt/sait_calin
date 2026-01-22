@@ -141,7 +141,7 @@ main {
 .teacher-photo-section {
     max-width: 1200px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 60px 20px;
 }
 
 .photo-container {
@@ -1100,20 +1100,20 @@ footer {
     font-size: 1.2rem;
 }
 
-.nav-links {
+.footer-nav .nav-links {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.nav-links a {
+.footer-nav .nav-links a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: color 0.3s ease;
     padding: 5px 0;
 }
 
-.nav-links a:hover {
+.footer-nav .nav-links a:hover {
     color: var(--secondary-color);
 }
 
@@ -1182,7 +1182,7 @@ footer {
         gap: 30px;
     }
     
-    .nav-links {
+    .footer-nav .nav-links {
         align-items: center;
     }
     

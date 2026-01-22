@@ -10,7 +10,144 @@
 </head>
 <body>
     <!-- Место для загрузки header -->
-    <div id="header-placeholder"></div>
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Логотип и главная страница -->
+            <div class="logo">
+                <a href="index.html" class="logo-link" data-target="home">
+                    <i class="fas fa-chalkboard-teacher logo-icon"></i>
+                    <div class="logo-text">
+                        <h1>Калинин <span>Алексей Владимирович</span></h1>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Основная навигация с разделами сайта -->
+            <nav class="main-nav">
+                
+                <div class="nav-sections-container" id="navSectionsContainer">
+                    <div class="nav-sections-grid">
+                        <!-- Раздел 1: Главная -->
+                        <a href="index.html" class="nav-section-item" data-target="home">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Главная</h4>
+                                <p>Начальная страница с фото и информацией</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 2: Общие сведения -->
+                        <a href="#about" class="nav-section-item" data-target="about">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Общие сведения</h4>
+                                <p>Основная информация о преподавателе</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 3: Результаты -->
+                        <a href="#pedagogical-results" class="nav-section-item" data-target="pedagogical-results">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Результаты деятельности</h4>
+                                <p>Достижения и успехи учащихся</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 4: Методики -->
+                        <a href="#methodology" class="nav-section-item" data-target="methodology">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Методические разработки</h4>
+                                <p>Учебные материалы и планы уроков</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 5: Классное руководство -->
+                        <a href="#classroom" class="nav-section-item" data-target="classroom">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Классное руководство</h4>
+                                <p>Информация о 10 "Б" классе</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 6: Для учащихся -->
+                        <a href="#students" class="nav-section-item" data-target="students">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Для учащихся</h4>
+                                <p>Учебные материалы и задания</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 7: Для родителей -->
+                        <a href="#parents" class="nav-section-item" data-target="parents">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Для родителей</h4>
+                                <p>Полезная информация и советы</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 8: Фотогалерея -->
+                        <a href="gallery.html" class="nav-section-item" data-target="gallery">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Фотогалерея</h4>
+                                <p>Фото с мероприятий и уроков</p>
+                            </div>
+                        </a>
+                        
+                        <!-- Раздел 9: Контакты -->
+                        <a href="#contacts" class="nav-section-item" data-target="contacts">
+                            <div class="nav-section-icon">
+                                <i class="fas fa-address-book"></i>
+                            </div>
+                            <div class="nav-section-content">
+                                <h4>Контакты</h4>
+                                <p>Связаться с преподавателем</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Быстрая навигация (для десктопа) -->
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link" data-target="home">Главная</a>
+                    <a href="#about" class="nav-link" data-target="about">Общие сведения</a>
+                    <a href="#pedagogical-results" class="nav-link" data-target="pedagogical-results">Результаты</a>
+                    <a href="#methodology" class="nav-link" data-target="methodology">Методики</a>
+                    <a href="#classroom" class="nav-link" data-target="classroom">Класс</a>
+                    <a href="#students" class="nav-link" data-target="students">Учащимся</a>
+                    <a href="#parents" class="nav-link" data-target="parents">Родителям</a>
+                    <a href="gallery.html" class="nav-link" data-target="gallery">Галерея</a>
+                    <a href="#contacts" class="nav-link" data-target="contacts">Контакты</a>
+                </div>
+            </nav>
+            
+            <!-- Кнопка мобильного меню -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
 
     <!-- Основной контент галереи -->
     <main class="gallery-main">
@@ -104,7 +241,8 @@
     </main>
 
     <!-- Подключаем скрипты -->
-    <script src="scripts/header.js"></script>
+    <!-- <script src="scripts/header.js"></script> -->
     <script src="scripts/gallery.js"></script>
+    <script src="scripts/main.js"></script>
 </body>
 </html>
