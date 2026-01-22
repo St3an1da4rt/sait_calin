@@ -7,6 +7,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles/header.css">
     <link rel="stylesheet" href="styles/index.css">
+    <style>
+        /* Временное решение чтобы меню не открывалось */
+        #header-placeholder .nav-sections-container {
+            display: none !important;
+            opacity: 0 !important;
+        }
+        
+        /* Убедимся что header сверху */
+        #header-placeholder {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 1000 !important;
+        }
+        
+        /* Отступ для контента */
+        body {
+            padding-top: 80px !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Место для загрузки header -->
@@ -14,67 +35,7 @@
 
     <!-- Main Content -->
     <main>
-        <section class="content-section" id="sections">
-            <h3><i class="fas fa-folder-open"></i> Разделы сайта</h3>
-            <div class="tabs-container">
-                <div class="tab" data-number="1" data-page="about">
-                    <i class="fas fa-user-tie"></i>
-                    <div class="tab-content">
-                        <h4>Общие сведения об учителе</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="2" data-page="results.html">
-                    <i class="fas fa-chart-line"></i>
-                    <div class="tab-content">
-                        <h4>Результаты педагогической деятельности</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="3" data-page="methodology.html">
-                    <i class="fas fa-book-open"></i>
-                    <div class="tab-content">
-                        <h4>Методические разработки</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="4" data-page="classroom.html">
-                    <i class="fas fa-users"></i>
-                    <div class="tab-content">
-                        <h4>Классное руководство</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="5" data-page="students.html">
-                    <i class="fas fa-graduation-cap"></i>
-                    <div class="tab-content">
-                        <h4>Для учащихся</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="6" data-page="parents.html">
-                    <i class="fas fa-user-friends"></i>
-                    <div class="tab-content">
-                        <h4>Для родителей</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="7" data-page="gallery.html">
-                    <i class="fas fa-images"></i>
-                    <div class="tab-content">
-                        <h4>Фотогалерея</h4>
-                    </div>
-                </div>
-                
-                <div class="tab" data-number="8" data-page="contacts.html">
-                    <i class="fas fa-address-book"></i>
-                    <div class="tab-content">
-                        <h4>Контакты</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Секция с фотографией и цитатой -->
         <section class="teacher-photo-section" id="home">
             <div class="photo-container">
                 <div class="photo-frame">
@@ -125,51 +86,462 @@
             </div>
         </section>
 
+        <!-- Секция "Разделы сайта" -->
+        <!-- <section class="content-section" id="sections">
+            <h3><i class="fas fa-folder-open"></i> Разделы сайта</h3>
+            <div class="tabs-container">
+                <div class="tab" data-page="about">
+                    <i class="fas fa-user-tie"></i>
+                    <div class="tab-content">
+                        <h4>Общие сведения об учителе</h4>
+                        <p>Основная информация и контакты</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="pedagogical-results">
+                    <i class="fas fa-chart-line"></i>
+                    <div class="tab-content">
+                        <h4>Результаты педагогической деятельности</h4>
+                        <p>Достижения и успехи учащихся</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="methodology">
+                    <i class="fas fa-book-open"></i>
+                    <div class="tab-content">
+                        <h4>Методические разработки</h4>
+                        <p>Учебные материалы и планы уроков</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="classroom">
+                    <i class="fas fa-users"></i>
+                    <div class="tab-content">
+                        <h4>Классное руководство</h4>
+                        <p>Информация о классе и мероприятиях</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="students">
+                    <i class="fas fa-graduation-cap"></i>
+                    <div class="tab-content">
+                        <h4>Для учащихся</h4>
+                        <p>Учебные материалы и задания</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="parents">
+                    <i class="fas fa-user-friends"></i>
+                    <div class="tab-content">
+                        <h4>Для родителей</h4>
+                        <p>Полезная информация и советы</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="gallery.html">
+                    <i class="fas fa-images"></i>
+                    <div class="tab-content">
+                        <h4>Фотогалерея</h4>
+                        <p>Фото с мероприятий и уроков</p>
+                    </div>
+                </div>
+                
+                <div class="tab" data-page="contacts">
+                    <i class="fas fa-address-book"></i>
+                    <div class="tab-content">
+                        <h4>Контакты</h4>
+                        <p>Связаться с преподавателем</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Секция "Общие сведения" -->
         <section class="content-section" id="about">
-            <h3><i class="fas fa-user-tie"></i> Общие сведения</h3>
+            <h3><i class="fas fa-user-tie"></i> Общие сведения об учителе</h3>
             <div class="info-grid">
                 <div class="info-item">
                     <h4>Место работы</h4>
                     <p>Муниципальное бюджетное общеобразовательное учреждение Сургутский естественно-научный лицей</p>
                 </div>
                 <div class="info-item">
-                    <h4>Должность</h4>
+                    <h4>Занимаемая должность</h4>
                     <p>Преподаватель-организатор ОБЖ, учитель физической культуры</p>
                 </div>
                 <div class="info-item">
                     <h4>Преподаваемые предметы</h4>
                     <p>Основы безопасности и защиты Родины, физическая культура</p>
                 </div>
-            </div>
-        </section>
-
-        <section class="content-section" id="experience">
-            <h3><i class="fas fa-briefcase"></i> Опыт работы</h3>
-            <div class="info-item">
-                <h4>Общий трудовой и педагогический стаж</h4>
-                <p>23 года</p>
-            </div>
-        </section>
-
-        <section class="content-section" id="education">
-            <h3><i class="fas fa-graduation-cap"></i> Образование</h3>
-            <div class="info-grid">
                 <div class="info-item">
-                    <h4>Основное образование</h4>
-                    <p>Северо-Казахстанский государственный университет, 2000 г.</p>
-                    <p><strong>Специальность:</strong> Преподаватель физической культуры и тренер по спорту</p>
+                    <h4>Общий трудовой и педагогический стаж</h4>
+                    <p>23 года</p>
                 </div>
                 <div class="info-item">
-                    <h4>Дополнительное образование</h4>
+                    <h4>Образование</h4>
+                    <p>Высшее, Северо-Казахстанский государственный университет, 2000 г.</p>
                     <p>Профессиональная переподготовка ООО «Инфоурок» по программе «Основы безопасности жизнедеятельности: теория и методика преподавания в образовательной организации», 2020 г.</p>
-                    <p><strong>Квалификация:</strong> Учитель, преподаватель основ безопасности жизнедеятельности</p>
+                </div>
+                <div class="info-item">
+                    <h4>Специальность, квалификация по диплому</h4>
+                    <p>Преподаватель физической культуры и тренер по спорту</p>
+                    <p>Учитель, преподаватель основ безопасности жизнедеятельности</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Результаты педагогической деятельности" -->
+        <section class="content-section" id="pedagogical-results">
+            <h3><i class="fas fa-chart-line"></i> Результаты педагогической деятельности</h3>
+            <div class="results-container">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="result-content">
+                        <h4>Успеваемость учащихся</h4>
+                        <p>Средний балл успеваемости по предметам: ОБЖ - 4.8, Физическая культура - 4.9</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 96%"></div>
+                            <span>96% успеваемость</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="result-content">
+                        <h4>Спортивные достижения</h4>
+                        <p>Учащиеся под моим руководством заняли 15 призовых мест на городских и областных соревнованиях за последние 3 года</p>
+                        <ul class="achievements-list">
+                            <li>Городские соревнования по баскетболу - 1 место (2023)</li>
+                            <li>Областная олимпиада по ОБЖ - 2 место (2022)</li>
+                            <li>Соревнования "Школа безопасности" - 1 место (2022)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="result-content">
+                        <h4>Качество знаний</h4>
+                        <p>Качество знаний учащихся по преподаваемым предметам стабильно выше 85%</p>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number">92%</span>
+                                <span class="stat-label">Качество знаний по ОБЖ</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">88%</span>
+                                <span class="stat-label">Качество знаний по физкультуре</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Выполнение учебной программы</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Методические разработки" -->
+        <section class="content-section" id="methodology">
+            <h3><i class="fas fa-book-open"></i> Методические разработки</h3>
+            <div class="methodology-container">
+                <div class="methodology-item">
+                    <h4>Учебные программы и планы</h4>
+                    <ul class="methodology-list">
+                        <li>Рабочая программа по ОБЖ для 8-11 классов</li>
+                        <li>Календарно-тематическое планирование по физической культуре</li>
+                        <li>Программа дополнительного образования "Школа безопасности"</li>
+                        <li>Элективный курс "Основы военной подготовки"</li>
+                    </ul>
+                </div>
+                
+                <div class="methodology-item">
+                    <h4>Разработки уроков</h4>
+                    <div class="lessons-grid">
+                        <div class="lesson-card">
+                            <h5>Урок ОБЖ "Оказание первой помощи"</h5>
+                            <p>Практико-ориентированный урок с использованием манекенов</p>
+                            <a href="#" class="download-btn">
+                                <i class="fas fa-download"></i> Скачать материалы
+                            </a>
+                        </div>
+                        <div class="lesson-card">
+                            <h5>Урок физкультуры "Баскетбол: техника броска"</h5>
+                            <p>Интерактивный урок с видеоанализом техники</p>
+                            <a href="#" class="download-btn">
+                                <i class="fas fa-download"></i> Скачать материалы
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="methodology-item">
+                    <h4>Публикации и статьи</h4>
+                    <div class="publications">
+                        <div class="publication">
+                            <h5>"Инновационные подходы в преподавании ОБЖ"</h5>
+                            <p>Журнал "Современное образование", 2022</p>
+                        </div>
+                        <div class="publication">
+                            <h5>"Здоровьесберегающие технологии на уроках физкультуры"</h5>
+                            <p>Сборник научных трудов, 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Классное руководство" -->
+        <section class="content-section" id="classroom">
+            <h3><i class="fas fa-users"></i> Классное руководство</h3>
+            <div class="classroom-container">
+                <div class="class-info">
+                    <div class="class-header">
+                        <h4>10 "Б" класс</h4>
+                        <span class="class-year">2023-2024 учебный год</span>
+                    </div>
+                    
+                    <div class="class-details">
+                        <div class="class-stat">
+                            <i class="fas fa-user-graduate"></i>
+                            <div>
+                                <span class="stat-number">28</span>
+                                <span class="stat-label">учащихся</span>
+                            </div>
+                        </div>
+                        
+                        <div class="class-stat">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <span class="stat-number">5</span>
+                                <span class="stat-label">отличников</span>
+                            </div>
+                        </div>
+                        
+                        <div class="class-stat">
+                            <i class="fas fa-trophy"></i>
+                            <div>
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">активистов</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="class-activities">
+                        <h5>Мероприятия класса:</h5>
+                        <ul>
+                            <li>Туристический поход "Осенняя тропа" (сентябрь 2023)</li>
+                            <li>Благотворительная акция "Дети-детям" (октябрь 2023)</li>
+                            <li>Спортивный праздник "Папа, мама, я - спортивная семья" (ноябрь 2023)</li>
+                            <li>Экскурсия в военную часть (декабрь 2023)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="class-photo">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="10 Б класс">
+                    <div class="photo-caption">
+                        <p>10 "Б" класс на экскурсии</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Для учащихся" -->
+        <section class="content-section" id="students">
+            <h3><i class="fas fa-graduation-cap"></i> Для учащихся</h3>
+            <div class="students-container">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>Учебные материалы</h4>
+                        <ul>
+                            <li><a href="#">Конспекты уроков по ОБЖ</a></li>
+                            <li><a href="#">Правила техники безопасности</a></li>
+                            <li><a href="#">Теоретические материалы по физкультуре</a></li>
+                            <li><a href="#">Нормативы ГТО</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h4>Задания и тесты</h4>
+                        <ul>
+                            <li><a href="#">Тест по теме "Первая помощь"</a></li>
+                            <li><a href="#">Практические задания по ОБЖ</a></li>
+                            <li><a href="#">Контрольные нормативы по физкультуре</a></li>
+                            <li><a href="#">Онлайн-викторина "Безопасность и здоровье"</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h4>Видеоуроки</h4>
+                        <ul>
+                            <li><a href="#">Техника выполнения упражнений</a></li>
+                            <li><a href="#">Оказание первой помощи</a></li>
+                            <li><a href="#">Правила поведения в ЧС</a></li>
+                            <li><a href="#">Зарядка для учащихся</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>Расписание и события</h4>
+                        <ul>
+                            <li><a href="#">Расписание уроков и секций</a></li>
+                            <li><a href="#">График спортивных мероприятий</a></li>
+                            <li><a href="#">Даты контрольных работ</a></li>
+                            <li><a href="#">Школьные соревнования</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Для родителей" -->
+        <section class="content-section" id="parents">
+            <h3><i class="fas fa-user-friends"></i> Для родителей</h3>
+            <div class="parents-container">
+                <div class="parent-info">
+                    <div class="info-card">
+                        <h4>Полезная информация</h4>
+                        <div class="info-content">
+                            <h5>Расписание консультаций:</h5>
+                            <p>Вторник: 15:00-17:00 (кабинет 215)</p>
+                            <p>Четверг: 16:00-18:00 (кабинет 215)</p>
+                            
+                            <h5>Контактная информация:</h5>
+                            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
+                            <p>Email: a.kalinin@school.ru</p>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h4>Советы родителям</h4>
+                        <div class="tips-list">
+                            <div class="tip">
+                                <i class="fas fa-heart"></i>
+                                <p>Как привить ребенку любовь к спорту</p>
+                            </div>
+                            <div class="tip">
+                                <i class="fas fa-shield-alt"></i>
+                                <p>Основы безопасности для детей дома и на улице</p>
+                            </div>
+                            <div class="tip">
+                                <i class="fas fa-apple-alt"></i>
+                                <p>Здоровое питание школьника</p>
+                            </div>
+                            <div class="tip">
+                                <i class="fas fa-balance-scale"></i>
+                                <p>Баланс учебы и физической активности</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="parent-announcements">
+                    <h4>Объявления и новости</h4>
+                    <div class="announcements-list">
+                        <div class="announcement">
+                            <span class="announcement-date">15.01.2024</span>
+                            <h5>Родительское собрание</h5>
+                            <p>Уважаемые родители! 20 января в 18:00 состоится родительское собрание в кабинете 215.</p>
+                        </div>
+                        <div class="announcement">
+                            <span class="announcement-date">10.01.2024</span>
+                            <h5>Спортивный праздник</h5>
+                            <p>Приглашаем родителей принять участие в спортивном празднике "Зимние забавы" 25 января.</p>
+                        </div>
+                        <div class="announcement">
+                            <span class="announcement-date">05.01.2024</span>
+                            <h5>Медицинские справки</h5>
+                            <p>Напоминаем о необходимости предоставить медицинские справки для занятий физкультурой.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Контакты" -->
+        <section class="content-section" id="contacts">
+            <h3><i class="fas fa-address-book"></i> Контакты</h3>
+            <div class="contacts-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Место работы</h4>
+                            <p>Муниципальное бюджетное общеобразовательное учреждение</p>
+                            <p>Сургутский естественно-научный лицей</p>
+                            <p class="contact-address">г. Сургут, ул. Университетская, 11</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>График работы</h4>
+                            <p>Понедельник-пятница: 8:00 - 16:00</p>
+                            <p>Консультации для родителей: вторник, четверг 15:00-17:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Контактная информация</h4>
+                            <p>Email: a.kalinin@school.ru</p>
+                            <p>Телефон: +7 (XXX) XXX-XX-XX</p>
+                            <p>Кабинет: 215 (2 этаж)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h4>Написать сообщение</h4>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Ваш email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Ваше сообщение" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Отправить сообщение
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer id="contacts">
+    <footer>
         <div class="footer-container">
             <div class="footer-logo">
                 <h3>Калинин <span>Алексей Владимирович</span></h3>
@@ -180,62 +552,36 @@
                 <p><i class="fas fa-book"></i> Основы безопасности и защиты Родины, физическая культура</p>
                 <p><i class="fas fa-award"></i> Педагогический стаж: 23 года</p>
             </div>
+            <div class="footer-nav">
+                <h4>Быстрая навигация</h4>
+                <div class="nav-links">
+                    <a href="#about">Общие сведения</a>
+                    <a href="#pedagogical-results">Результаты</a>
+                    <a href="#methodology">Методики</a>
+                    <a href="#classroom">Классное руководство</a>
+                </div>
+            </div>
             <div class="copyright">
-                &copy; 2023 Сайт-визитка преподавателя. Все права защищены.
+                &copy; 2024 Сайт-визитка преподавателя. Все права защищены.
             </div>
         </div>
     </footer>
 
     <!-- Подключаем скрипт для header -->
     <script src="scripts/header.js"></script>
-    
-    <!-- Основной JavaScript -->
     <script>
-        // Переход по вкладкам
         document.addEventListener('DOMContentLoaded', function() {
-            // Обработчик клика по вкладкам
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', function() {
-                    const pageUrl = this.getAttribute('data-page');
-                    
-                    // Эффект нажатия
-                    this.style.transform = 'scale(0.97)';
-                    
-                    setTimeout(() => {
-                        if (pageUrl) {
-                            if (pageUrl.includes('.html')) {
-                                // Переход на отдельную страницу
-                                window.location.href = pageUrl;
-                            } else {
-                                // Якорная ссылка на этой странице
-                                const targetSection = document.getElementById(pageUrl);
-                                if (targetSection) {
-                                    window.scrollTo({
-                                        top: targetSection.offsetTop - 100,
-                                        behavior: 'smooth'
-                                    });
-                                }
-                            }
-                        } else {
-                            alert('Этот раздел находится в разработке. Здесь будет страница: ' + this.textContent);
-                        }
-                    }, 150);
+            // Форма контактов
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Сообщение отправлено! Я свяжусь с вами в ближайшее время.');
+                    this.reset();
                 });
-                
-                // Доступность
-                tab.setAttribute('role', 'button');
-                tab.setAttribute('tabindex', '0');
-                tab.setAttribute('aria-label', `Открыть раздел: ${tab.querySelector('h4').textContent}`);
-                
-                tab.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            });
+            }
             
-            // Прокрутка при загрузке страницы с якорем
+            // Прокрутка при загрузке с якорем
             if (window.location.hash) {
                 setTimeout(() => {
                     const targetId = window.location.hash.substring(1);
@@ -249,17 +595,9 @@
                     }
                 }, 100);
             }
-            
-            // Эффект загрузки для вкладок
-            setTimeout(() => {
-                document.querySelectorAll('.tab').forEach((tab, index) => {
-                    setTimeout(() => {
-                        tab.style.opacity = '1';
-                        tab.style.transform = 'translateY(0)';
-                    }, index * 50);
-                });
-            }, 300);
         });
     </script>
+    <!-- Основной JavaScript для index.html -->
+    <!-- <script src="scripts/main.js"></script> -->
 </body>
 </html>

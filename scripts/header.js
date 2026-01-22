@@ -1,4 +1,4 @@
-// scripts/header.js - загрузка и управление header
+// scripts/header.js - загрузка и управление header с разделами сайта
 
 // Функция для загрузки header
 function loadHeader() {
@@ -21,6 +21,27 @@ function loadHeader() {
             // Вставляем header
             headerPlaceholder.innerHTML = data;
             
+            // ГАРАНТИРУЕМ что меню изначально скрыто
+            setTimeout(() => {
+                const sectionsContainer = document.getElementById('navSectionsContainer');
+                const sectionsToggle = document.getElementById('navSectionsToggle');
+                const mainNav = document.querySelector('.main-nav');
+                
+                if (sectionsContainer) {
+                    sectionsContainer.classList.remove('active');
+                    sectionsContainer.style.display = 'none';
+                    sectionsContainer.style.opacity = '0';
+                }
+                
+                if (sectionsToggle) {
+                    sectionsToggle.classList.remove('active');
+                }
+                
+                if (mainNav && window.innerWidth <= 992) {
+                    mainNav.classList.remove('active');
+                }
+            }, 10);
+            
             // Инициализируем функционал header
             initHeader();
             
@@ -39,25 +60,26 @@ function loadHeader() {
 // Создаем fallback header на случай ошибки
 function createFallbackHeader() {
     return `
-        <header>
+        <header class="site-header">
             <div class="header-container">
                 <div class="logo">
-                    <i class="fas fa-chalkboard-teacher logo-icon"></i>
-                    <h1>Калинин <span>Алексей Владимирович</span></h1>
+                    <a href="index.html" class="logo-link" data-target="home">
+                        <i class="fas fa-chalkboard-teacher logo-icon"></i>
+                        <h1>Калинин <span>Алексей Владимирович</span></h1>
+                    </a>
                 </div>
-                <nav>
-                    <ul id="mainMenu">
-                        <li><a href="index.html" class="nav-link" data-page="home">Главная</a></li>
-                        <li><a href="#about" class="nav-link" data-page="about">Об учителе</a></li>
-                        <li><a href="#experience" class="nav-link" data-page="experience">Опыт</a></li>
-                        <li><a href="#education" class="nav-link" data-page="education">Образование</a></li>
-                        <li><a href="gallery.html" class="nav-link" data-page="gallery">Фотогалерея</a></li>
-                        <li><a href="#contacts" class="nav-link" data-page="contacts">Контакты</a></li>
-                    </ul>
+                
+                <nav class="main-nav">
+                    <div class="nav-sections-toggle" id="navSectionsToggle">
+                        <i class="fas fa-th"></i>
+                        <span>Разделы сайта</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+                        <i class="fas fa-bars"></i>
+                    </button>
                 </nav>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
             </div>
         </header>
     `;
@@ -65,130 +87,342 @@ function createFallbackHeader() {
 
 // Инициализация функционала header
 function initHeader() {
-    // Мобильное меню
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mainMenu = document.getElementById('mainMenu');
+    console.log('Инициализация header');
     
-    if (mobileMenuBtn && mainMenu) {
-        mobileMenuBtn.addEventListener('click', () => {
-            mainMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
+    // Переключение выпадающего меню "Разделы сайта"
+    initSectionsToggle();
+    
+    // Мобильное меню
+    initMobileMenu();
+    
+    // Навигация по разделам
+    initNavigation();
+    
+    // Закрытие меню при клике вне его
+    initCloseOnClickOutside();
+    
+    // Прокрутка к якорям
+    initAnchorScroll();
+}
+
+// Переключение выпадающего меню "Разделы сайта"
+function initSectionsToggle() {
+    const sectionsToggle = document.getElementById('navSectionsToggle');
+    const sectionsContainer = document.getElementById('navSectionsContainer');
+    
+    if (sectionsToggle && sectionsContainer) {
+        console.log('Инициализация переключателя разделов');
+        
+        // ГАРАНТИРУЕМ что меню скрыто при инициализации
+        sectionsContainer.classList.remove('active');
+        sectionsToggle.classList.remove('active');
+        
+        sectionsToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            sectionsToggle.classList.toggle('active');
+            sectionsContainer.classList.toggle('active');
+            
+            // Закрываем мобильное меню если оно открыто
+            const mobileMenu = document.getElementById('navLinks');
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Закрытие при клике на раздел
+        document.querySelectorAll('.nav-section-item').forEach(item => {
+            item.addEventListener('click', function() {
+                sectionsToggle.classList.remove('active');
+                sectionsContainer.classList.remove('active');
+            });
         });
     }
+}
+
+// Мобильное меню
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const mainNav = document.querySelector('.main-nav');
     
-    // Обработка кликов по навигационным ссылкам
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            const dataPage = this.getAttribute('data-page');
+    if (mobileMenuBtn && mainNav) {
+        console.log('Инициализация мобильного меню');
+        
+        // ГАРАНТИРУЕМ что меню скрыто при инициализации
+        mainNav.classList.remove('active');
+        if (navLinks) navLinks.classList.remove('active');
+        
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
             
-            // Если это якорная ссылка на этой странице
-            if (href.startsWith('#') && window.location.pathname.endsWith('index.html')) {
-                e.preventDefault();
+            if (window.innerWidth <= 992) {
+                // На мобильных: показываем/скрываем основную навигацию
+                mainNav.classList.toggle('active');
                 
-                const targetId = href.substring(1);
-                const targetSection = document.getElementById(targetId);
+                // Меняем иконку
+                const icon = this.querySelector('i');
+                if (mainNav.classList.contains('active')) {
+                    icon.className = 'fas fa-times';
+                } else {
+                    icon.className = 'fas fa-bars';
+                }
                 
-                if (targetSection) {
-                    // Плавная прокрутка
-                    window.scrollTo({
-                        top: targetSection.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Устанавливаем активную ссылку
-                    setActiveNavLink(dataPage);
-                    
-                    // Закрываем мобильное меню если открыто
-                    if (mainMenu && mainMenu.classList.contains('active')) {
-                        mainMenu.classList.remove('active');
-                        if (mobileMenuBtn) {
-                            mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                        }
-                    }
+                // Закрываем разделы сайта если открыты
+                const sectionsContainer = document.getElementById('navSectionsContainer');
+                const sectionsToggle = document.getElementById('navSectionsToggle');
+                if (sectionsContainer && sectionsContainer.classList.contains('active')) {
+                    sectionsContainer.classList.remove('active');
+                    if (sectionsToggle) sectionsToggle.classList.remove('active');
+                }
+            } else {
+                // На десктопе: показываем/скрываем быструю навигацию
+                if (navLinks) {
+                    navLinks.classList.toggle('active');
                 }
             }
-            // Если это ссылка на другую страницу (например, gallery.html)
-            else if (!href.startsWith('#')) {
-                // Переход произойдет автоматически по ссылке
-                // Можно добавить анимацию перехода если нужно
+        });
+    }
+}
+
+// Навигация по разделам
+function initNavigation() {
+    // Обработка кликов по разделам сайта
+    document.querySelectorAll('.nav-section-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+            const target = this.getAttribute('data-target');
+            
+            if (target === 'gallery') {
+                // Переход на страницу галереи
+                window.location.href = 'gallery.html';
+                return;
+            }
+            
+            if (target === 'home') {
+                // Переход на главную
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Для якорных ссылок на этой странице
+            e.preventDefault();
+            const targetSection = document.getElementById(target);
+            
+            if (targetSection) {
+                // Плавная прокрутка к секции
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                // Устанавливаем активную ссылку
+                setActiveNavLink(target);
+                
+                // Закрываем все меню
+                closeAllMenus();
             }
         });
     });
     
-    // Закрытие мобильного меню при клике на ссылку
-    document.querySelectorAll('#mainMenu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (mainMenu && mainMenu.classList.contains('active')) {
-                mainMenu.classList.remove('active');
+    // Обработка кликов по быстрой навигации
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const target = this.getAttribute('data-target');
+            
+            if (target === 'gallery') {
+                window.location.href = 'gallery.html';
+                return;
+            }
+            
+            if (target === 'home') {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            e.preventDefault();
+            const targetSection = document.getElementById(target);
+            
+            if (targetSection) {
+                window.scrollTo({
+                    top: targetSection.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                setActiveNavLink(target);
+                closeAllMenus();
+            }
+        });
+    });
+}
+
+// Закрытие всех меню
+function closeAllMenus() {
+    // Закрываем разделы сайта
+    const sectionsContainer = document.getElementById('navSectionsContainer');
+    const sectionsToggle = document.getElementById('navSectionsToggle');
+    if (sectionsContainer && sectionsContainer.classList.contains('active')) {
+        sectionsContainer.classList.remove('active');
+        if (sectionsToggle) sectionsToggle.classList.remove('active');
+    }
+    
+    // Закрываем мобильное меню
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.querySelector('.main-nav');
+    const navLinks = document.getElementById('navLinks');
+    
+    if (window.innerWidth <= 992) {
+        if (mainNav && mainNav.classList.contains('active')) {
+            mainNav.classList.remove('active');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+            }
+        }
+    } else {
+        if (navLinks && navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+        }
+    }
+}
+
+// Закрытие меню при клике вне его
+function initCloseOnClickOutside() {
+    document.addEventListener('click', function(e) {
+        const sectionsContainer = document.getElementById('navSectionsContainer');
+        const sectionsToggle = document.getElementById('navSectionsToggle');
+        const mainNav = document.querySelector('.main-nav');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        
+        // Закрываем разделы сайта при клике вне их
+        if (sectionsContainer && sectionsContainer.classList.contains('active')) {
+            if (!sectionsContainer.contains(e.target) && !sectionsToggle.contains(e.target)) {
+                sectionsContainer.classList.remove('active');
+                if (sectionsToggle) sectionsToggle.classList.remove('active');
+            }
+        }
+        
+        // Закрываем мобильное меню при клике вне его
+        if (window.innerWidth <= 992 && mainNav && mainNav.classList.contains('active')) {
+            if (!mainNav.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mainNav.classList.remove('active');
                 if (mobileMenuBtn) {
-                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
                 }
+            }
+        }
+    });
+}
+
+// Прокрутка к якорям
+function initAnchorScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href === '#') return;
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement && !href.includes('.html')) {
+                e.preventDefault();
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 100,
+                    behavior: 'smooth'
+                });
+                
+                setActiveNavLink(targetId);
+                closeAllMenus();
             }
         });
     });
 }
 
 // Установка активной навигационной ссылки
-function setActiveNavLink(activePage = null) {
-    const navLinks = document.querySelectorAll('.nav-link');
+function setActiveNavLink(activeSection = null) {
+    const navLinks = document.querySelectorAll('.nav-link, .nav-section-item');
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash.substring(1) || 'home';
     
-    // Если явно указана активная страница
-    if (activePage) {
+    // Если явно указана активная секция
+    if (activeSection) {
         navLinks.forEach(link => {
             link.classList.remove('active');
-            if (link.getAttribute('data-page') === activePage) {
+            const linkTarget = link.getAttribute('data-target');
+            
+            if (linkTarget === activeSection) {
                 link.classList.add('active');
             }
         });
         return;
     }
     
-    if (currentPath.includes('gallery.html')) {
-        const galleryLink = document.querySelector('nav a[data-page="gallery"]');
-        if (galleryLink) {
-            navLinks.forEach(link => link.classList.remove('active'));
-            galleryLink.classList.add('active');
-        }
-        return;
-    }
-    
-    // Определяем текущую страницу автоматически
-    const currentPath = window.location.pathname;
-    const currentHash = window.location.hash.substring(1) || 'home';
-    
+    // Автоматическое определение активной секции
     navLinks.forEach(link => {
         link.classList.remove('active');
+        const linkTarget = link.getAttribute('data-target');
         
-        const linkHref = link.getAttribute('href');
-        const linkPage = link.getAttribute('data-page');
+        // Если это страница галереи
+        if (currentPath.includes('gallery.html') && linkTarget === 'gallery') {
+            link.classList.add('active');
+            return;
+        }
         
         // Если это главная страница
-        if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/')) {
-            // Для якорных ссылок
-            if (linkHref === `#${currentHash}`) {
+        if ((currentPath.endsWith('index.html') || currentPath === '/' || currentPath.endsWith('/')) && 
+            !currentPath.includes('gallery.html')) {
+            
+            if (linkTarget === currentHash) {
                 link.classList.add('active');
-            }
-            // Для ссылки на главную без якоря
-            else if (linkHref === 'index.html' && currentHash === 'home') {
+            } else if (currentHash === '' && linkTarget === 'home') {
                 link.classList.add('active');
             }
         }
-        // Если это другая страница (например, gallery.html)
-        else if (linkHref === currentPath.split('/').pop()) {
-            link.classList.add('active');
+    });
+}
+
+// Подсветка активной секции при прокрутке
+function initScrollSpy() {
+    const sections = document.querySelectorAll('section[id]');
+    
+    if (sections.length === 0) return;
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const headerHeight = 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.scrollY >= (sectionTop - headerHeight - 50)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        // Обновляем навигацию только на главной странице
+        if (!window.location.pathname.includes('gallery.html')) {
+            setActiveNavLink(current);
         }
     });
 }
 
 // Запускаем загрузку header при загрузке страницы
-document.addEventListener('DOMContentLoaded', loadHeader);
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Загрузка header...');
+    loadHeader();
+    
+    // Инициализируем scroll spy после загрузки header
+    setTimeout(() => {
+        initScrollSpy();
+    }, 100);
+});
 
 // Экспортируем функции для использования в других файлах
 window.headerModule = {
     loadHeader,
     setActiveNavLink,
-    initHeader
+    initScrollSpy,
+    closeAllMenus
 };
