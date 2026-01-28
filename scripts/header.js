@@ -20,14 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const linksData = [
             { href: 'index.html', icon: 'home', text: 'Главная' },
-            { href: '#about', icon: 'user-tie', text: 'Общие сведения' },
-            { href: '#pedagogical-results', icon: 'chart-line', text: 'Результаты' },
-            { href: '#methodology', icon: 'book-open', text: 'Методики' },
-            { href: '#classroom', icon: 'users', text: 'Классное руководство' },
-            { href: '#students', icon: 'graduation-cap', text: 'Для учащихся' },
-            { href: '#parents', icon: 'user-friends', text: 'Для родителей' },
+            { href: 'about.html', icon: 'user-tie', text: 'Подробные сведения' },
+            { href: 'index.html#pedagogical-results', icon: 'chart-line', text: 'Достижения' },
+            { href: 'index.html#methodology', icon: 'book-open', text: 'Методические разработки' },
+            { href: 'index.html#classroom', icon: 'users', text: 'Классное руководство' },
+            { href: 'bullying.html', icon: 'user-friends', text: 'булинг' },
+            { href: 'index.html#students', icon: 'graduation-cap', text: 'Для учащихся' },
+            { href: 'index.html#parents', icon: 'user-friends', text: 'Для родителей' },
             { href: 'gallery.html', icon: 'images', text: 'Фотогалерея' },
-            { href: '#contacts', icon: 'address-book', text: 'Контакты' }
+            { href: 'index.html#contacts', icon: 'address-book', text: 'Контакты' }
         ];
         
         linksData.forEach(linkData => {

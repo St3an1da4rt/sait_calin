@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const galleryImages = [
         {
             id: 1,
-            src: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            src: '',
             title: 'Урок физкультуры',
             description: 'Проведение урока по баскетболу в школьном спортивном зале',
             category: 'sport',
@@ -15,9 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
-            src: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            src: 'https://downloader.disk.yandex.ru/preview/0737d16d9549343519d1fd08a29b9bdfb3303c891fec1101877b6ec54d98ea5c/6979f145/_89pmPxqRtQYsdL8VZ_dHdUi96s4Yxv3RSUibTj0MmBQX_q_Dwo9VGFziUimRKaQWnXlf1i7tTjR3_USFVO3kg%3D%3D?uid=0&filename=photo_2026-01-27_12-28-28.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&tknv=v3&size=1905x1078',
             title: 'Занятие по ОБЖ',
-            description: 'Обучение учащихся оказанию первой медицинской помощи',
+            description: 'Отработка выступления 10Д класса посвященное героям Великой Отечественной войны',
             category: 'obzh',
             date: '10.03.2024'
         },
@@ -41,15 +41,23 @@ document.addEventListener('DOMContentLoaded', function() {
             id: 5,
             src: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
             title: 'Родительское собрание',
-            description: 'Встреча с родителями учащихся 10 "Б" класса',
+            description: 'Встреча с родителями учащихся 10 "Д" класса',
             category: 'events',
             date: '20.02.2024'
         },
         {
             id: 6,
-            src: 'https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+            src: 'https://downloader.disk.yandex.ru/preview/433433e5bce91a24a47a0dca2f7e0864b2583faa53e5e5ccaee2834be57b884f/6979f145/YX-qW8CIdGXhIahz6ogY8NUi96s4Yxv3RSUibTj0MmAyEeCkuJ0NrH1YrT72fOQe3epqIrIokmQJBEIGcvEnCw%3D%3D?uid=0&filename=photo_2026-01-27_12-28-17.jpg&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&tknv=v3&size=1762x1077',
             title: 'Награждение победителей',
             description: 'Вручение грамот за победу в олимпиаде по ОБЖ',
+            category: 'achievements',
+            date: '15.02.2024'
+        },
+        {
+            id: 11,
+            src: 'https://s987sas.storage.yandex.net/rdisk/6ec42e7b777e055ecb649b9f86c86f3089bd2c7082de92a4c23476e1726ebe3a/6979f145/CpiTMilhrzQbbAruk2gTpy_568ak1emfEUwqeybZpv79fH20Bly5fTH4xunznSeUMbVURKLkPA4r9iL2A0tcxA==?uid=0&filename=DSCF0764.JPG&disposition=inline&hash=&limit=0&content_type=image%2Fjpeg&owner_uid=0&fsize=17205550&hid=ac40323e58bd7282bc9d3d019e9d58cb&media_type=image&tknv=v3&etag=0cb76aa1aedbbb492bb97f7378590c8f&ts=64970f1bb1b40&s=261ff6ea91f64a59b5900f080e8be1ea56a0146246c987b2235cd17f95013d11&pb=U2FsdGVkX1-Cj6xtDHjx2EnpwLWNQNEpObRKFA00Z9y7cvN1YIOWnnCAWVs80Wh8JbR8LZC9_EaNeHNhkPOiWCcyo2v_ZIQSAJR67aqjTGw',
+            title: 'Награждение победителей',
+            description: 'Вручение грамот за победу в военных соревнованиях',
             category: 'achievements',
             date: '15.02.2024'
         },
